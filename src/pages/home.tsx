@@ -21,7 +21,7 @@ const PHOTOS = [
   foto6
 ];
 
-const AUDIO_URL = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Placeholder
+const AUDIO_URL = "https://cdn.pixabay.com/audio/2026/01/19/audio_909d3ca1fa.mp3"; // Placeholder
 
 function FloatingBalloon({ color, left, delay, duration }: any) {
   return (
@@ -52,6 +52,12 @@ export default function Home() {
 
   // Age Counter Effect
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().catch((err) => {
+        console.log("Autoplay diblokir:", err);
+      });
+    }
+
     let start = 0;
     const end = 20;
     const duration = 10000;
@@ -79,7 +85,7 @@ export default function Home() {
 
   const handleSurprise = () => {
     setShowConfetti(true);
-    setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 5 seconds
+    setTimeout(() => setShowConfetti(false), 8000); // Stop confetti after 5 seconds
   };
 
   return (
@@ -157,7 +163,7 @@ export default function Home() {
           <Heart className="w-16 h-16 text-brand-pink mx-auto mb-8 animate-pulse" />
           <p className="text-2xl md:text-4xl leading-relaxed text-gray-700 font-poppins">
             Hari ini adalah hari <span className="text-brand-pink font-bold">spesial</span> untuk seseorang yang <span className="text-brand-pink font-bold">luar biasa</span>. 
-            Semoga setiap langkahmu ke depan selalu dipenuhi dengan kebahagiaan, cinta, dan tawa.
+            Semoga setiap langkahmu ke depan selalu dipenuhi dengan kebahagiaan, cinta, dan tawa yaaa muach
           </p>
         </motion.div>
       </section>
@@ -176,7 +182,39 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-gray-600 font-medium">
             Dua dekade penuh cerita, tawa, dan mimpi ✨
           </p>
+          <p className="text-xl md:text-2xl text-gray-600 font-medium">
+            Ciyee dah tua
+          </p>
         </motion.div>
+      </section>
+
+      {/* 2.2 Songs For You */}
+      <section className="pt-24 px-6 max-w-4xl mx-auto text-center">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-poppins font-bold text-center mb-16 text-gray-800"
+        >
+          Song For You ✨
+        </motion.h2>
+        <div className="">
+          <iframe
+            data-testid="embed-iframe"
+            style={{ borderRadius: "12px" }}
+            src="https://open.spotify.com/embed/track/5Egm9N7FnzsThl1CFXB2mm"
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allowFullScreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            className='mb-5'
+          />
+            <p className="text-xs md:text-sm leading-relaxed text-gray-700 font-poppins italic">
+              Kita tidak sedang membangun rumah, tapi merangkai pulang—biarlah ia tampak sederhana dari luar, namun hangat dan penuh makna di dalamnya; tempat harapan tumbuh pelan, dan lelahmu selalu menemukan ruang untuk beristirahat...
+            </p>
+          </div>
       </section>
 
       {/* 3. Galeri (Photo Section) */}
@@ -225,9 +263,9 @@ export default function Home() {
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {[
-              { icon: Sparkles, text: "Semoga selalu bahagia di setiap langkahmu." },
-              { icon: Heart, text: "Diberi kesehatan dan dilindungi selalu." },
-              { icon: Star, text: "Sukses dalam segala hal yang kamu impikan." }
+              { icon: Sparkles, text: "Semoga selalu bahagia yahhh" },
+              { icon: Star, text: "Sukses dalam segala hal yang kamu impikan, Amiin" },
+              { icon: Gift, text: "Diberi kesehatan dan dilindungi selalu, Amiin" }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -259,11 +297,11 @@ export default function Home() {
         </motion.h2>
         <div className="space-y-12 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-brand-pink-pastel before:via-brand-pink before:to-brand-pink-pastel">
           {[
-            { emoji: "🌸", title: "Pertama kali bertemu", desc: "Awal dari sebuah cerita manis yang tak terlupakan." },
-            { emoji: "🎀", title: "Momen paling lucu bersama", desc: "Tawa ceria yang selalu menghangatkan suasana." },
-            { emoji: "🎂", title: "Ulang tahun sebelumnya", desc: "Merayakan usia ke-19 dengan kebahagiaan luar biasa." },
-            { emoji: "✈️", title: "Kenangan perjalanan", desc: "Menjelajahi tempat baru dan mengukir memori bersama." },
-            { emoji: "💖", title: "Hari ini, 20 tahun", desc: "Menyambut babak baru yang lebih indah dan gemilang." }
+            { emoji: "🌸", title: "Pertama kali ketemu", desc: "Semua cerita gila dan penuh cinta ini dimulai" },
+            { emoji: "🎀", title: "Momen paling lucu bersama", desc: "Tawa ceria yang selalu menghangatkan suasana" },
+            { emoji: "🎂", title: "Ulang tahun sebelumnya", desc: "Merayakan usia ke-19 dengan kebahagiaan luar biasa" },
+            { emoji: "✈️", title: "Kenangan perjalanan", desc: "Menjelajahi tempat baru dan mengukir memori bersama" },
+            { emoji: "💖", title: "Hari ini, 20 tahun", desc: "Menyambut babak baru yang lebih indah dan gemilang" }
           ].map((item, index) => (
             <motion.div 
               key={index}
@@ -316,7 +354,7 @@ export default function Home() {
                 className="mt-12 p-8 bg-white rounded-3xl shadow-2xl inline-block border-2 border-brand-pink/20"
               >
                 <p className="text-2xl md:text-3xl font-poppins font-bold text-brand-pink leading-relaxed">
-                  You are loved today, <br/>tomorrow, and always! 💕
+                  Selamat ulang tahun Cayangku Cintakuu <br/>Aku Sayang Kamuu! 💕
                 </p>
               </motion.div>
             )}
